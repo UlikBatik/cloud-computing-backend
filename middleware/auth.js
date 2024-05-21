@@ -14,7 +14,7 @@ const createToken = (payload) => {
 
 exports.register = async (req, res) => {
 
-    const { username, email, password, confirmpassword, profileimg } = req.body
+    const { username, email, password, confirmpassword } = req.body
 
     if (password !== confirmpassword) {
         return res.status(400).json({
@@ -46,8 +46,7 @@ exports.register = async (req, res) => {
             data: {
                 EMAIL: email,
                 PASSWORD: hashedPassword,
-                USERNAME: username,
-                PROFILEIMG: profileimg,
+                USERNAME: username
             },
         },
     )
