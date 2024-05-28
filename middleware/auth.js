@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken")
 
 const createToken = (payload) => {
     return jwt.sign({ payload }, process.env.SECRET_KEY, {
-        expiresIn: 3 * 24 * 60 * 60
+        expiresIn: 30 * 24 * 60 * 60
     })
 }
 
@@ -61,7 +61,7 @@ exports.register = async (req, res) => {
         console.log(error)
         res.status(500).json({
             "status": false,
-            "message": "An error occurred",
+            "message": "An unexpected error occurred on the server",
         })
     }
     console.log(req.body)
