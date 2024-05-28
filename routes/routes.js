@@ -3,6 +3,7 @@ const router = express.Router();
 const auth = require("../middleware/auth");
 const accessValidation = require("../middleware/accessValidation");
 const postController = require("../controller/postController");
+const batikController = require("../controller/batikController");
 const scrapController = require("../controller/scrapController");
 const images = require("../modules/images");
 const Multer = require('multer');
@@ -34,10 +35,13 @@ router.get('/post/:postId', accessValidation, postController.getPostById)
 router.get('/posts/:batikId', accessValidation, postController.getPostsByBatikId)
 router.delete('/post/:postId', accessValidation, postController.deletePost)
 
+// Like routes
+
 // Batik routes
-router.get('/batiks', accessValidation, postController.getBatiks)
-router.get('/batik/:batikId', accessValidation, postController.getBatikById)
+router.get('/batiks', accessValidation, batikController.getBatiks)
+router.get('/batik/:batikId', accessValidation, batikController.getBatikById)
 // router.get('/batiks/:query', accessValidation, postController.queryBatik)
+
 // Matahari
 router.get("/search/:query", accessValidation, scrapController.makeScarp);
 
