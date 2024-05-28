@@ -24,7 +24,6 @@ function getPublicUrl(filename) {
 
 
 exports.uploadToGcs = (req, res, next) => {
-
     if (!req.file) return next()
 
     const gcsname = nanoid(8);
@@ -44,8 +43,8 @@ exports.uploadToGcs = (req, res, next) => {
     stream.on('finish', () => {
         req.file.cloudStorageObject = gcsname
         req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
-
-        res.send(req.file.cloudStoragePublicUrl)
+        next()
+        // res.send(req.file.cloudStoragePublicUrl)
     })
 
     stream.end(req.file.buffer)
