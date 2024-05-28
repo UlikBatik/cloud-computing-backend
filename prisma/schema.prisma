@@ -32,7 +32,7 @@ model Post {
   BATIKID    String @db.Char(5)
   POSTIMG    String @db.VarChar(255)
   CAPTION    String? @db.VarChar(250)
-  LIKES      Int
+  LIKES      Int @default(0)
   CREATEDAT  DateTime @default(now()) @db.Timestamp(0)
   UPDATEDAT  DateTime @default(now()) @db.Timestamp(0)
 
