@@ -1,5 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("../prisma/prisma")
 
 
 exports.getPosts = async (req, res) => {
@@ -102,8 +101,7 @@ exports.getPostsByBatikId = async (req, res) => {
 
 exports.createPost = async (req, res) => {
     const { USERID, BATIKID, CAPTION } = req.body;
-    console.log(req.body)
-
+    
     if (req.file && req.file.cloudStoragePublicUrl) {
         imageUrl = req.file.cloudStoragePublicUrl
     }

@@ -1,5 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("../prisma/prisma-client");
 const jwt = require("jsonwebtoken");
 
 
@@ -13,20 +12,14 @@ const accessValidation = (req, res, next) => {
         })
     }
 
-    console.log(authorization) //remove later
 
     const token = authorization.split(" ")[1];
     const secret = process.env.SECRET_KEY;
 
-    console.log(token) //remove later
 
     try{
         const decoded = jwt.verify(token, secret);
-        console.log(decoded.payload) //remove later
         req.user = decoded;
-        console.log(req.user) //remove later
-
-
 
         prisma.user.findUnique({
             where: {

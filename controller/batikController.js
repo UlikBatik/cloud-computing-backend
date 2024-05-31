@@ -1,5 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("../prisma/prisma")
 
 exports.getBatiks = async (req, res) => {
     const batiks = await prisma.batik.findMany();
