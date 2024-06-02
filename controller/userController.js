@@ -54,7 +54,8 @@ exports.updateProfile = async (req, res) => {
             },
             data: {
                 USERNAME: USERNAME,
-                PROFILEIMG: imageUrl
+                PROFILEIMG: imageUrl,
+                UPDATEDAT: new Date()
             }
         
         })
