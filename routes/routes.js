@@ -5,12 +5,14 @@ const accessValidation = require("../middleware/accessValidation");
 const postController = require("../controller/postController");
 const batikController = require("../controller/batikController");
 const scrapController = require("../controller/scrapController");
+const modelController = require("../controller/modelController");
 const images = require("../modules/images");
 const Multer = require('multer');
 const multer = Multer({
     storage: Multer.MemoryStorage,
     fileSize: 3 * 1024 * 1024
 })
+
 
 
 router.get("/", (req, res) => {
@@ -44,6 +46,7 @@ router.get('/batik/:batikId', accessValidation, batikController.getBatikById)
 
 // Matahari
 router.get("/search/:query", accessValidation, scrapController.makeScarp);
+router.post("/predict", multer.single('attachment'), modelController.predit );
 
 
 module.exports = router;
