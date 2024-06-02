@@ -19,6 +19,8 @@ const postController = require("../controller/postController");
 const batikController = require("../controller/batikController");
 const scrapController = require("../controller/scrapController");
 const likeController = require("../controller/likeController");
+const modelController = require("../controller/modelController");
+
 
 // Welcome route
 router.get("/", (req, res) => {
@@ -50,6 +52,7 @@ router.get('/batiks/:query', accessValidation, batikController.queryBatik)
 
 // Matahari routes
 router.get("/search/:query", accessValidation, scrapController.makeScarp);
+router.post("/predict", multer.single('attachment'), modelController.predit );
 
 // User routes
 router.put('/user/:userId', accessValidation, multer.single('IMAGE'), images.uploadToGcs, userController.updateProfile)
