@@ -16,5 +16,5 @@ exports.predict = async (image) => {
     const classResult = tf.argMax(prediction, 1).dataSync()[0];
     const label = classes[classResult];
     const result = { label, confidenceScore }
-    return result
+    return label
 }
