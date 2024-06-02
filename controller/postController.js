@@ -30,8 +30,10 @@ exports.getPostsByUser = async (req, res) => {
     const posts = await prisma.post.findMany({
         where: {
             USERID: userId
-        }
-    });
+        },
+        include: {
+            user: true,
+    }});
     res.status(200).json({
         "status": true,
         "message": "Posts retrieved successfully",
