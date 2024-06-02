@@ -1,5 +1,4 @@
-const { PrismaClient } = require("@prisma/client")
-const prisma = new PrismaClient()
+const prisma = require("../prisma/prisma")
 const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 
@@ -50,7 +49,6 @@ exports.register = async (req, res) => {
         },
     )
     const token = createToken(newUser.USERID)
-    console.log(newUser)
     res.status(200).json({
         "status": true,
         "message": "Account created successfully",
@@ -64,7 +62,6 @@ exports.register = async (req, res) => {
             "message": "An unexpected error occurred on the server",
         })
     }
-    console.log(req.body)
 
 }
 

@@ -1,5 +1,4 @@
-const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
+const prisma = require("../prisma/prisma");
 
 exports.getBatiks = async (req, res) => {
     const batiks = await prisma.batik.findMany();
@@ -33,27 +32,27 @@ exports.getBatikById = async (req, res) => {
     });
 }
 
-// exports.queryBatik = async (req, res) => {
-//     const { query } = req.params;
-//     const batik = await prisma.batik.findMany({
-//         where: {
-//             OR: [
-//                 {
-//                     NAME: {
-//                         contains: query
-//                     }
-//                 },
-//                 {
-//                     DESCRIPTION: {
-//                         contains: query
-//                     }
-//                 }
-//             ]
-//         }
-//     });
-//     res.status(200).json({
-//         "status": true,
-//         "message": "Batik retrieved successfully",
-//         "data": batik
-//     });
-// }
+exports.queryBatik = async (req, res) => {
+    const { query } = req.query.query;
+    const batik = await prisma.batik.findMany({
+        where: {
+            OR: [
+                {
+                    BATIKNAME: {
+                        contains: query
+                    }
+                },
+                {
+                    BATIKDESC: {
+                        contains: query
+                    }
+                }
+            ]
+        }
+    });
+    res.status(200).json({
+        "status": true,
+        "message": "Batik retrieved successfully",
+        "data": batik
+    });
+}
