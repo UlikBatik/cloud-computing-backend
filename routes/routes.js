@@ -52,7 +52,7 @@ router.get('/batiks/:query', accessValidation, batikController.queryBatik)
 
 // Matahari routes
 router.get("/search/:query", accessValidation, scrapController.makeScarp);
-router.post("/predict", multer.single('attachment'), modelController.predit );
+router.post("/predict", accessValidation, multer.single('attachment'), modelController.predit );
 
 // User routes
 router.put('/user/:userId', accessValidation, multer.single('IMAGE'), images.uploadToGcs, userController.updateProfile)

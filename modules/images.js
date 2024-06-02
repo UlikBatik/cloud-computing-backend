@@ -6,7 +6,7 @@ require('dotenv').config();
 
 const path = require('path');
 
-const pathKey = path.resolve('./serviceaccountkey.json')
+const pathKey = path.resolve('./service.json')
 
 // TODO: Sesuaikan konfigurasi Storage
 const gcs = new Storage({
