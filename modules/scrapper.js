@@ -19,7 +19,7 @@ exports.scrap = async (query) =>{
     })
     return result.slice(0, 5);
 } catch (error) {
-    throw error; // Tangkap dan lemparkan error untuk menangani di controller
+    throw error; 
 }
     
     
