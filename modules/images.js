@@ -8,13 +8,13 @@ const path = require('path');
 
 const pathKey = path.resolve('./service.json')
 
-// TODO: Sesuaikan konfigurasi Storage
+
 const gcs = new Storage({
     projectId: process.env.PROJECT_ID,
     keyFilename: pathKey
 })
 
-// TODO: Tambahkan nama bucket yang digunakan
+
 const bucketName = process.env.BUCKET_NAME
 const bucket = gcs.bucket(bucketName)
 
@@ -45,7 +45,7 @@ exports.uploadToGcs = (req, res, next) => {
         req.file.cloudStorageObject = gcsname
         req.file.cloudStoragePublicUrl = getPublicUrl(gcsname)
         next()
-        // res.send(req.file.cloudStoragePublicUrl)
+     
     })
 
     stream.end(req.file.buffer)
