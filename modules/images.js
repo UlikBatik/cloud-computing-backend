@@ -1,6 +1,5 @@
 'use strict'
 const {Storage} = require('@google-cloud/storage')
-const fs = require('fs')
 const { nanoid } = require("nanoid");
 require('dotenv').config();
 
