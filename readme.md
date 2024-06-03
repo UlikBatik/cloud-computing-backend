@@ -17,8 +17,9 @@ If you want to run this API Server on your local machine, you need to do this st
 - Third, type `npm ci` in your terminal and hit enter button.
 - Fourth, start xampp.
 - fifth, create database name `ulikbatik-dev`.
-- sixth, type `npx prisma migrate dev` in your terminal and hit enter button.
-- seventh, type `npm run start-dev` in your terminal and hit enter button.
+- sixth, type `npx prisma generate` in your terminal and hit enter button.	
+- seventh, type `npx prisma migrate dev` in your terminal and hit enter button.
+- eighth, type `npm run start-dev` in your terminal and hit enter button.
 - Finally, the server will run on your http://localhost:8080
 
 # API Endpoints
@@ -90,6 +91,7 @@ bearer token: token
 
 #### Response
 ```http
+    }
   "status": true,
     "message": "Fetching user profile successful",
 	  "data":{
