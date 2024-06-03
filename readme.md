@@ -354,7 +354,7 @@ bearer token: token
 ### Search Batik 
 Search batik using query param dinamis
 ```http
-  GET /batiks?query=
+  GET /batiks/search?q={query}
 ```
 | Parameter         | Type     | Description   |
 | :------------------ | :--------- | :-------------- |
