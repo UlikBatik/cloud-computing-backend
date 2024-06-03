@@ -48,10 +48,10 @@ router.post('/like/:userId', accessValidation, likeController.likePost)
 // Batik routes
 router.get('/batiks', accessValidation, batikController.getBatiks)
 router.get('/batik/:batikId', accessValidation, batikController.getBatikById)
-router.get('/batiks/:query', accessValidation, batikController.queryBatik)
+router.get('/batiks/search', accessValidation, batikController.queryBatik)
 
 // Matahari routes
-router.get("/search/:query", accessValidation, scrapController.makeScarp);
+router.get("/search", accessValidation, scrapController.makeScarp);
 router.post("/predict", accessValidation, multer.single('attachment'), modelController.predit );
 
 // User routes

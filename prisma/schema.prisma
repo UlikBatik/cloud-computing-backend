@@ -6,6 +6,7 @@ datasource db {
 
 generator client {
     provider = "prisma-client-js"
+    previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 model Batik {
@@ -14,6 +15,10 @@ model Batik {
   BATIKDESC  String @db.VarChar(200)
   BATIKIMG   String @db.VarChar(255)
   POST       Post[]
+
+  @@index([BATIKID])
+  @@fulltext([BATIKNAME])
+  @@fulltext([BATIKNAME, BATIKDESC])
 }
 
 model Likes {

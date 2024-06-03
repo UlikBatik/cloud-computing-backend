@@ -1,0 +1,8 @@
+-- CreateIndex
+CREATE INDEX `Batik_BATIKID_idx` ON `Batik`(`BATIKID`);
+
+-- CreateIndex
+CREATE FULLTEXT INDEX `Batik_BATIKNAME_idx` ON `Batik`(`BATIKNAME`);
+
+-- CreateIndex
+CREATE FULLTEXT INDEX `Batik_BATIKNAME_BATIKDESC_idx` ON `Batik`(`BATIKNAME`, `BATIKDESC`);

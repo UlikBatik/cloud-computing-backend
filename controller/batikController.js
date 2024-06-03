@@ -33,21 +33,16 @@ exports.getBatikById = async (req, res) => {
 }
 
 exports.queryBatik = async (req, res) => {
-    const { query } = req.query.query;
+    const  query  = req.query.q
+    console.log(query)
     const batik = await prisma.batik.findMany({
         where: {
-            OR: [
-                {
-                    BATIKNAME: {
-                        contains: query
-                    }
+                BATIKNAME: {
+                    search: query
                 },
-                {
-                    BATIKDESC: {
-                        contains: query
-                    }
+                BATIKDESC: {
+                    search: query
                 }
-            ]
         }
     });
     res.status(200).json({
