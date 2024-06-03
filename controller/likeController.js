@@ -26,8 +26,7 @@ exports.likePost = async (req, res) => {
     var POSTID = req.body.POSTID;
     const USERID = req.params.userId;
 
-    console.log(USERID)
-    console.log(POSTID)
+    
 
     const checkLike = await prisma.likes.count({
         where: {
