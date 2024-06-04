@@ -12,13 +12,15 @@ generator client {
 model Batik {
   BATIKID    String @id @db.Char(5)
   BATIKNAME  String @db.VarChar(50)
-  BATIKDESC  String @db.VarChar(200)
+  BATIKLOCT  String @db.VarChar(50)
+  BATIKDESC  String @db.VarChar(500)
+  BATIKHIST  String @db.VarChar(800)
   BATIKIMG   String @db.VarChar(255)
   POST       Post[]
 
   @@index([BATIKID])
   @@fulltext([BATIKNAME])
-  @@fulltext([BATIKNAME, BATIKDESC])
+  @@fulltext([BATIKNAME, BATIKDESC, BATIKHIST, BATIKLOCT])
 }
 
 model Likes {
