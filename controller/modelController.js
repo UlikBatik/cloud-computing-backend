@@ -1,4 +1,5 @@
 const predict = require ('../modules/model')
+const prisma = require("../prisma/prisma");
 
 exports.predit = async (req, res) => {
 const image = req.file
@@ -9,7 +10,12 @@ if (!image) {
   });
 }
 try {
-    const result = await predict.predict(image.buffer);
+    const batikId = await predict.predict(image.buffer);
+    const result = await prisma.batik.findUnique({
+      where: {
+          BATIKID: batikId
+      }
+  });
     return res.status(200).json({
       status: true,
       message: "Scan successful",
