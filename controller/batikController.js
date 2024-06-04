@@ -42,6 +42,12 @@ exports.queryBatik = async (req, res) => {
                 },
                 BATIKDESC: {
                     search: query
+                },
+                BATIKHIST: {
+                    search: query
+                },
+                BATIKLOCT: {
+                    search: query
                 }
         }
     });
