@@ -35,7 +35,6 @@ router.post('/login', auth.login)
 
 // Post routes
 router.get('/posts', accessValidation, postController.getPosts)
-//router.get('/posts/:userId', accessValidation, postController.getPostsByUser) // ini gaperlu dah dapet dari user
 router.post('/posts', accessValidation, multer.single('IMAGE'), images.uploadToGcs, postController.createPost)
 router.get('/post/:postId', accessValidation, postController.getPostById)
 router.get('/posts/:batikId', accessValidation, postController.getPostsByBatikId)
@@ -52,6 +51,7 @@ router.get('/batiks/search', accessValidation, batikController.queryBatik)
 
 // Matahari routes
 router.get("/search", accessValidation, scrapController.makeScarp);
+// Machine Learning routes
 router.post("/predict", accessValidation, multer.single('attachment'), modelController.predit );
 
 // User routes

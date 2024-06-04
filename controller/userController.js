@@ -34,8 +34,7 @@ exports.updateProfile = async (req, res) => {
     var USERNAME = req.body.USERNAME
     const USERID = req.params.userId
 
-    console.log(USERNAME)
-    console.log(USERID)
+    
 
     if (!req.file){
         imageUrl = 'url'
@@ -43,10 +42,10 @@ exports.updateProfile = async (req, res) => {
         imageUrl = req.file.cloudStoragePublicUrl
     }
 
-    console.log(imageUrl)
+   
 
     try{
-        console.log('kodingan jalan sampe sini')
+        
 
         const updatedUser = await prisma.user.update({
             where: {
