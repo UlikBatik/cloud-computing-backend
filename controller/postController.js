@@ -2,9 +2,17 @@ const prisma = require("../prisma/prisma")
 
 
 exports.getPosts = async (req, res) => {
-    const posts = await prisma.post.findMany();
+    const posts = await prisma.post.findMany(
+        {
+            include: {
+                user: true,
+                batik: true
+            }
+        }
+        
+    );
     res.status(200).json({
-        "status": true,
+        "status": true, 
         "message": "Posts retrieved successfully",
         "data": posts
     }
