@@ -50,7 +50,7 @@ router.get('/batik/:batikId', accessValidation, batikController.getBatikById)
 router.get('/batiks/search', accessValidation, batikController.queryBatik)
 
 // Matahari routes
-router.get("/search", accessValidation, scrapController.makeScarp);
+router.post("/search/:query", accessValidation, scrapController.makeScarp);
 // Machine Learning routes
 router.post("/predict", accessValidation, multer.single('attachment'), modelController.predit );
 
