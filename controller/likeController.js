@@ -7,6 +7,10 @@ exports.getLikesByUser = async (req, res) => {
         const likes = await prisma.likes.findMany({
             where: {
                 USERID: USERID
+            },
+            include: {
+                user: true,
+                post: true
             }
         })
         res.status(200).json({
