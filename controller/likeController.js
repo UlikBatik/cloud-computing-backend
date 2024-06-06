@@ -10,18 +10,28 @@ exports.getLikesByUser = async (req, res) => {
             },
             include: {
                 user: true,
-                post: true
+                post: {
+                    include: {
+                        user: {
+                            select: {
+                                USERNAME: true,
+                                USERID: true
+                            }
+                        }
+                    }
+                }
             }
         })
         res.status(200).json({
             "status": true,
             "message": "Like retrieved successfully",
-            "data": likes,
+            "data": likes
         })
-    } catch {
+    } catch(err) {
         res.status(500).json({
             "status": false,
             "message": "An unexpected error occurred on the server",
+            "error": err
         })
     }
 }
