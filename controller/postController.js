@@ -7,7 +7,10 @@ exports.getPosts = async (req, res) => {
             include: {
                 user: true,
                 batik: true
-            }
+            },
+            orderBy: {
+                CREATEDAT: 'asc'
+        }
         }
         
     );
@@ -25,7 +28,9 @@ exports.getPostsByUser = async (req, res) => {
     const count = await prisma.post.count({
         where: {
             USERID: userId
-        }
+        },
+        
+        
     });
 
     if (count === 0) {
@@ -59,7 +64,8 @@ exports.getPostById = async (req, res) => {
         include: {
             user: true,
             batik: true
-        }
+        },
+
     });
 
     if (!post) {
@@ -83,7 +89,10 @@ exports.getPostsByBatikId = async (req, res) => {
     const count = await prisma.post.count({
         where: {
             BATIKID: batikId
-        }
+        },
+        orderBy: {
+            CREATEDAT: 'asc'
+    }
     });
 
     if (count === 0) {
