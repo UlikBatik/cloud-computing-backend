@@ -26,6 +26,7 @@ model Batik {
 model Likes {
   USERID  String @db.Char(16)
   POSTID  String @db.Char(16)
+  CREATEDAT  DateTime @default(now()) @db.Timestamp(0)
 
   @@id([USERID, POSTID])
 
