@@ -8,6 +8,9 @@ exports.getLikesByUser = async (req, res) => {
             where: {
                 USERID: USERID
             },
+            orderBy: {
+                CREATEDAT: 'desc',
+            },
             include: {
                 user: true,
                 post: {
@@ -18,7 +21,7 @@ exports.getLikesByUser = async (req, res) => {
                                 USERID: true
                             }
                         }
-                    }
+                    },
                 }
             }
         })
