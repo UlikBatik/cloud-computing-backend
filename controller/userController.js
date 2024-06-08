@@ -10,14 +10,25 @@ exports.getProfile = async (req, res) => {
                 USERID: USERID
             },
             include: {
-                post: true,
+                post: {
+                    include : {
+                        batik: true
+                 },
+                 orderBy: {
+                    CREATEDAT: 'asc'
+                }
+                },
                 _count: {
                     select: { 
                         post: true,
                         likes: true
                      }
-            },
-        }})
+            },        
+        },
+           
+                
+               
+    })
         res.status(200).json({
             "status": true,
             "message": "User profile retrieved successfully",
