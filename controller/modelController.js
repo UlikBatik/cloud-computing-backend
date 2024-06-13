@@ -13,10 +13,10 @@ if (!image) {
 try {
     const batikId = await predict.predict(image.buffer);
     if ( batikId == "BTX00"){
-      const result = "Mohon maaf  foto bukan merupakan jenis batik"
-      return res.status(200).json({
-        status: true,
-        message: "Scan successful",
+      const result = "Mohon maaf foto bukan merupakan jenis batik"
+      return res.status(400).json({
+        status: false,
+        message: "Bad request",
         result: result
       });
     }
