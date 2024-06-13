@@ -2,21 +2,32 @@ const prisma = require("../prisma/prisma")
 
 
 exports.getPosts = async (req, res) => {
+    const page = req.query.page;
+    const limit = 10;
+    let skip = (page - 1) * limit;
     const posts = await prisma.post.findMany(
-        {
+        { 
+            take: limit,
+            skip: skip,
             include: {
                 user: true,
                 batik: true
             },
             orderBy: {
-                CREATEDAT: 'asc'
+                CREATEDAT: 'desc'
         }
         }
         
     );
+
+    const count = await prisma.post.count();
+    const totalPage = Math.ceil(count / limit);
     res.status(200).json({
         "status": true, 
         "message": "Posts retrieved successfully",
+        "currentPage": page - 0,
+        "totalPage": totalPage,
+        "totalData": count,
         "data": posts
     }
 )
