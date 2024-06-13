@@ -20,6 +20,7 @@ const batikController = require("../controller/batikController");
 const scrapController = require("../controller/scrapController");
 const likeController = require("../controller/likeController");
 const modelController = require("../controller/modelController");
+const { model } = require("@tensorflow/tfjs-node");
 
 
 // Welcome route
@@ -53,6 +54,7 @@ router.get('/batiks/search', accessValidation, batikController.queryBatik)
 router.get("/search/:query", accessValidation, scrapController.makeScarp);
 // Machine Learning routes
 router.post("/predict", accessValidation, multer.single('attachment'), modelController.predit );
+router.post('/recommend/:userid', modelController.recommendation)
 
 // User routes
 router.put('/user/:userId', accessValidation, multer.single('IMAGE'), images.uploadToGcs, userController.updateProfile)
