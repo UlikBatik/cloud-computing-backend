@@ -54,7 +54,7 @@ router.get('/batiks/search', accessValidation, batikController.queryBatik)
 router.get("/search/:query", accessValidation, scrapController.makeScarp);
 // Machine Learning routes
 router.post("/predict", accessValidation, multer.single('attachment'), modelController.predit );
-router.post('/recommend/:userid', modelController.recommendation)
+router.post('/recommend/:userid', accessValidation, modelController.recommendation)
 
 // User routes
 router.put('/user/:userId', accessValidation, multer.single('IMAGE'), images.uploadToGcs, userController.updateProfile)
