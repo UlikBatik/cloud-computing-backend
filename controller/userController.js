@@ -1,10 +1,31 @@
-const { profile } = require("@tensorflow/tfjs-node")
 const prisma = require("../prisma/prisma")
 
 exports.getProfile = async (req, res) => {
     const USERID  = req.params.userId
 
     try{
+        const postcount = await prisma.post.count({
+            where: {
+                USERID: USERID
+            },
+        })
+
+        if (postcount !== 0){
+            const userposts = await prisma.post.findMany({
+                where: {
+                    USERID: USERID
+                },
+                select: {
+                    LIKES: true
+                }
+            })
+
+            var totalLikes = 0
+            userposts.forEach(post => {
+                totalLikes += post.LIKES
+            })
+        }
+
         const user = await prisma.user.findUnique({
             where: {
                 USERID: USERID
@@ -15,13 +36,13 @@ exports.getProfile = async (req, res) => {
                         batik: true
                  },
                  orderBy: {
-                    CREATEDAT: 'asc'
+                    CREATEDAT: 'desc'
                 }
                 },
                 _count: {
                     select: { 
                         post: true,
-                        likes: true
+                        likes: true,
                      }
             },        
         },
@@ -32,6 +53,7 @@ exports.getProfile = async (req, res) => {
         res.status(200).json({
             "status": true,
             "message": "User profile retrieved successfully",
+            "likesReceived": totalLikes,
             "data": user,
         })
     }catch{
