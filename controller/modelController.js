@@ -39,31 +39,3 @@ try {
   }
 
 }
-
-exports.recommed = async (req, res) => {
-  const userId = req.params.userid;
-  try {
-  //   const data = await prisma.post.findMany({
-  //     include: {
-  //         batik: true,
-  //         likes: {
-  //             where: {
-  //                 USERID: userId
-  //             }
-  //         }
-  //     }
-  // });
-  // const result = await predict.getRecommendations('./modules/cbf.py',[data,userId]);
-    return res.status(200).json({
-      status: true,
-      message: "This is post that you mike like",
-      result: data
-    });
-  } catch (err) {
-    return res.status(500).json({
-      status: false,
-      message: "An unexpected error occurred on the server",
-      err: err.toString(),
-    });
-  }
-}
