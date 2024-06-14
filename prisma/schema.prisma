@@ -47,6 +47,8 @@ model Post {
   user  User  @relation(fields: [USERID], references: [USERID], onDelete: Restrict, onUpdate: Restrict)
   batik Batik @relation(fields: [BATIKID], references: [BATIKID], onDelete: Restrict, onUpdate: Restrict)
   likes Likes[]
+
+   @@fulltext([POSTID])
 }
 
 model User {
