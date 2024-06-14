@@ -40,17 +40,12 @@ exports.predit = async (req, res) => {
   }
 };
 
-exports.recommendation = async (req, res) => {
-  const userid = req.params.userid;
+exports.recommendation = async (userid) => {
   try {
     const base = process.env.RECOMMEND_URL
     const response = await axios.post( base + userid);
-    return res.json(response.data);
+    return response.data;
   } catch (err) {
-    res.status(500).json({ 
-      status: false,
-      message: "An unexpected error occurred on the server",
-      err: err.toString(),
-    });
+    throw err
   }
 };
