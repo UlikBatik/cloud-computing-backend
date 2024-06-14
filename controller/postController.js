@@ -1,4 +1,5 @@
 const prisma = require("../prisma/prisma")
+const modelController = require("../controller/modelController");
 
 
 exports.getPosts = async (req, res) => {
@@ -32,6 +33,47 @@ exports.getPosts = async (req, res) => {
     }
 )
 }
+
+exports.getPostsRecommend = async (req, res) => {
+    try {
+        const userid = req.params.userid
+        const model = await modelController.recommendation(userid)
+        const postid = model.result
+        const formattedPostid = postid.join(' | ');
+        const posts = await prisma.post.findMany(
+            { 
+                where:{
+                    POSTID: {
+                        search: formattedPostid
+                    }
+                },
+                include: {
+                    user: true,
+                    batik: true
+                },
+                orderBy: {
+                    CREATEDAT: 'desc'
+            }
+            }
+            
+        );
+    
+        res.status(200).json({
+            "status": true, 
+            "message": "Posts retrieved successfully",
+            "data": posts
+        }
+    ) 
+    } catch(err){
+        return res.status(500).json({
+            status: false,
+            message: "An error occured",
+            err: err.toString(),
+          });
+    }
+
+}
+
 
 exports.getPostsByUser = async (req, res) => {
     const userId = req.params.userId;
