@@ -40,6 +40,7 @@ router.post('/posts', accessValidation, multer.single('IMAGE'), images.uploadToG
 router.get('/post/:postId', accessValidation, postController.getPostById)
 router.get('/posts/:batikId', accessValidation, postController.getPostsByBatikId)
 router.delete('/post/:postId', accessValidation, postController.deletePost)
+router.get('/fyp/:userid',accessValidation, postController.getPostsRecommend)
 
 // Like routes
 router.get('/likes/:userId', accessValidation, likeController.getLikesByUser)
@@ -54,7 +55,7 @@ router.get('/batiks/search', accessValidation, batikController.queryBatik)
 router.get("/search/:query", accessValidation, scrapController.makeScarp);
 // Machine Learning routes
 router.post("/predict", accessValidation, multer.single('attachment'), modelController.predit );
-router.post('/recommend/:userid', accessValidation, modelController.recommendation)
+
 
 // User routes
 router.put('/user/:userId', accessValidation, multer.single('IMAGE'), images.uploadToGcs, userController.updateProfile)
