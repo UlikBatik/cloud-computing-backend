@@ -31,7 +31,7 @@ model Likes {
   @@id([USERID, POSTID])
 
   user User @relation(fields: [USERID], references: [USERID], onDelete: Restrict, onUpdate: Restrict)
-  post Post @relation(fields: [POSTID], references: [POSTID], onDelete: Restrict, onUpdate: Restrict)
+  post Post @relation(fields: [POSTID], references: [POSTID], onDelete: Cascade, onUpdate: Restrict)
 }
 
 model Post {
